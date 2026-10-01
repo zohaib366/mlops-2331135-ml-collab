@@ -1,0 +1,105 @@
+# Data and model contents are versioned with DVC
+/data/**
+/models/**
+
+# Keep directories accessible for metadata exceptions
+!/data/**/
+!/models/**/
+
+# Track placeholders and DVC metadata in Git
+!/data/**/.gitkeep
+!/models/**/.gitkeep
+!/data/**/*.dvc
+!/models/**/*.dvc
+!/data/**/.gitignore
+!/models/**/.gitignore
+
+# Saved models and checkpoints
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.onnx
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+.dvc/config.local
+.pypirc
+
+# DVC local cache and temporary files
+/.dvc/cache/
+/.dvc/tmp/
+
+# Python environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python caches and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Package build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+
+# Test, coverage and lint caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Experiment tracking logs
+mlruns/
+
+# Operating system and editor temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Generated documentation
+docs/site/
+/site/
+
+# Keep these reproducibility files tracked:
+# pyproject.toml
+# uv.lock
+# .python-version
+# dvc.yaml
+# dvc.lock
+# .dvc/config
+# params.yaml
