@@ -16,6 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License"
 ]
 dependencies = [
+    "dvc>=3.67.1",
     "ipython",
     "jupyterlab",
     "loguru",
