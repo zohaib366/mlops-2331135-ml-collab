@@ -1,5 +1,5 @@
 {
-  "accuracy": 0.6987,
-  "f1_macro": 0.3404,
+  "accuracy": 0.6943,
+  "f1_macro": 0.3409,
   "git_sha": "e707d89acb2cb5064ad0369b06d69155b1e4102a"
 }
