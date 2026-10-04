@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/raw/WineQT.csv
       hash: md5
-      md5: e2e57e4c41e6ee0213fb12e5a70f4bfb
-      size: 78057
+      md5: 86b765fca20ee8128699064ca4559e2f
+      size: 64996
     - path: src/common.py
       hash: md5
       md5: e44e1a9bb50acadedaf2faace3cb7a3b
@@ -23,19 +23,19 @@ stages:
     outs:
     - path: data/processed/test.csv
       hash: md5
-      md5: 3ef741af927b5eedc867fcbf147e6895
-      size: 13693
+      md5: 247f88a51b9fd03421ebed7e9a146c48
+      size: 12280
     - path: data/processed/train.csv
       hash: md5
-      md5: 27b2f5a843930c0f5e14250b6cbeaec7
-      size: 54487
+      md5: a071690749147d3d4e506d4c0f8303e4
+      size: 48469
   train:
     cmd: python -m src.train
     deps:
     - path: data/processed/train.csv
       hash: md5
-      md5: 27b2f5a843930c0f5e14250b6cbeaec7
-      size: 54487
+      md5: a071690749147d3d4e506d4c0f8303e4
+      size: 48469
     - path: src/common.py
       hash: md5
       md5: e44e1a9bb50acadedaf2faace3cb7a3b
@@ -56,19 +56,19 @@ stages:
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 37aa2113041b4c87d252f219076e7223
-      size: 6900130
+      md5: b34c8329e011aa783fbe9cb0fb77e9cf
+      size: 6431298
   evaluate:
     cmd: python -m src.evaluate
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: 3ef741af927b5eedc867fcbf147e6895
-      size: 13693
+      md5: 247f88a51b9fd03421ebed7e9a146c48
+      size: 12280
     - path: models/model.joblib
       hash: md5
-      md5: 37aa2113041b4c87d252f219076e7223
-      size: 6900130
+      md5: b34c8329e011aa783fbe9cb0fb77e9cf
+      size: 6431298
     - path: src/common.py
       hash: md5
       md5: e44e1a9bb50acadedaf2faace3cb7a3b
@@ -80,5 +80,5 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: 2f16d87470dc9bdc6ca4a090c3288a48
+      md5: 06f7b2be425b0f769c8b7467e1bcd415
       size: 109
