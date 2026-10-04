@@ -9,12 +9,12 @@ stages:
       size: 78057
     - path: src/common.py
       hash: md5
-      md5: 6c2a31c0241a342f09d441dec24d8d62
-      size: 1066
+      md5: e44e1a9bb50acadedaf2faace3cb7a3b
+      size: 1033
     - path: src/prepare.py
       hash: md5
-      md5: 645012c0e9f85cc7ad606e345ef3a29f
-      size: 693
+      md5: 0384cf8352d86a7ccefba955c467a11b
+      size: 671
     params:
       params.yaml:
         seed: 42
@@ -38,26 +38,26 @@ stages:
       size: 54487
     - path: src/common.py
       hash: md5
-      md5: 6c2a31c0241a342f09d441dec24d8d62
-      size: 1066
+      md5: e44e1a9bb50acadedaf2faace3cb7a3b
+      size: 1033
     - path: src/train.py
       hash: md5
-      md5: c73b79ae6f5ee394d2c993c8cceb2ad6
-      size: 1495
+      md5: f6e815fefe4c1daf92fc81532122bae6
+      size: 1441
     params:
       params.yaml:
         seed: 42
         train:
           model: random_forest
           n_estimators: 100
-          max_depth: 6
+          max_depth: 12
           min_samples_leaf: 1
           criterion: entropy
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 82b5d5cafaabfeaad5e736b52525873b
-      size: 1127010
+      md5: 7d29f32e16d8436dd4c9509a4ceba264
+      size: 4100386
   evaluate:
     cmd: python -m src.evaluate
     deps:
@@ -67,18 +67,18 @@ stages:
       size: 13693
     - path: models/model.joblib
       hash: md5
-      md5: 82b5d5cafaabfeaad5e736b52525873b
-      size: 1127010
+      md5: 7d29f32e16d8436dd4c9509a4ceba264
+      size: 4100386
     - path: src/common.py
       hash: md5
-      md5: 6c2a31c0241a342f09d441dec24d8d62
-      size: 1066
+      md5: e44e1a9bb50acadedaf2faace3cb7a3b
+      size: 1033
     - path: src/evaluate.py
       hash: md5
-      md5: 66468f0cdff6de0b5f9b68c4a52b8a58
-      size: 985
+      md5: e7cc1ba6263857307337c595d60587b5
+      size: 956
     outs:
     - path: metrics.json
       hash: md5
-      md5: 67ea3f46364ca6053cc6b3dc85f51e51
+      md5: 0d4d48db4ffca604a8ce4f7ecd44ae8e
       size: 109
