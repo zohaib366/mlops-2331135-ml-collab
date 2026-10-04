@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - staging
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.21"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Set up CML
+        uses: iterative/setup-cml@v1
+
+      - name: Run Ruff lint
+        run: uv run ruff check .
+
+      - name: Check Ruff formatting
+        run: uv run ruff format --check .
+
+      - name: Run unit, data, and smoke tests
+        run: uv run pytest tests/
+
+      - name: Create metrics report
+        run: |
+          echo "## Smoke Train Metrics" > report.md
+          echo "" >> report.md
+          echo "| Metric | Value |" >> report.md
+          echo "|---|---:|" >> report.md
+          echo "| Accuracy | $(python -c "import json; print(json.load(open('ci-metrics.json'))['accuracy'])") |" >> report.md
+          echo "| F1 Macro | $(python -c "import json; print(json.load(open('ci-metrics.json'))['f1_macro'])") |" >> report.md
+
+      - name: Post metrics to PR
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cml comment create report.md --watermark-title="Smoke Train Metrics"

@@ -59,6 +59,9 @@ coverage.xml
 *.cover
 *.py,cover
 
+# CML CI metrics
+ci-metrics.json
+
 # Notebook checkpoints
 .ipynb_checkpoints/
 
