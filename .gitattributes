@@ -1,0 +1,25 @@
+# Normalise line endings in the repo (LF in Git, native in the working tree).
+# Without this the result depends on each contributor's local core.autocrlf.
+* text=auto
+
+*.py   text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf
+*.cfg  text eol=lf
+*.dvc  text eol=lf
+Makefile text eol=lf
+
+# Notebooks are JSON; keep them LF so jupytext pairing round-trips cleanly.
+*.ipynb text eol=lf
+
+# Lockfiles and data are machine-generated - keep them out of diffs/merges.
+uv.lock  text eol=lf linguist-generated=true -diff -merge
+*.ipynb  linguist-language=Python
+
+*.csv  text eol=lf
+*.pkl  binary
+*.joblib binary
+*.png  binary
+*.jpg  binary

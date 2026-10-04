@@ -1,0 +1,33 @@
+repos:
+  # Python linting and formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # Strip output from Jupyter notebooks
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+
+  # Detect secrets
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        exclude: ^(dvc\.lock|metrics\.json)$
+        # DVC pointers and lockfiles are machine-generated content hashes,
+        # not credentials - they trip the high-entropy detector on every commit.
+        args:
+          - --exclude-files
+          - '(^|/)(uv\.lock|dvc\.lock|poetry\.lock)$|\.dvc$|^\.dvc/'
