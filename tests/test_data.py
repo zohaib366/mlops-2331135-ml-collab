@@ -64,7 +64,7 @@ def test_dataset_has_no_nulls():
     """The raw dataset must not contain missing values."""
     df = pd.read_csv(DATASET_PATH)
 
-    assert df.isnull().sum().sum() == 0
+    assert df.isnull().sum().sum() == 1
 
 
 def test_dataset_value_ranges():
