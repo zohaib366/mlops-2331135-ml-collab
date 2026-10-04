@@ -1,23 +1,10 @@
-# Data and model contents are versioned with DVC
-/data/**
-/models/**
+# NOTE: data/ and models/ are NOT ignored here on purpose.
+# DVC writes its own .gitignore next to every output it tracks
+# (data/raw/, data/processed/, models/), and refuses outputs that Git already ignores.
 
-# Keep directories accessible for metadata exceptions
-!/data/**/
-!/models/**/
-
-# Track placeholders and DVC metadata in Git
-!/data/**/.gitkeep
-!/models/**/.gitkeep
-!/data/**/*.dvc
-!/models/**/*.dvc
-!/data/**/.gitignore
-!/models/**/.gitignore
-
-# Saved models and checkpoints
+# Other model and checkpoint formats (model.joblib is DVC-tracked, so *.joblib is NOT ignored)
 *.pkl
 *.pickle
-*.joblib
 *.pt
 *.pth
 *.ckpt
