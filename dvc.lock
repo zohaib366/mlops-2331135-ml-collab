@@ -1,0 +1,84 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+    - path: data/raw/WineQT.csv
+      hash: md5
+      md5: e2e57e4c41e6ee0213fb12e5a70f4bfb
+      size: 78057
+    - path: src/common.py
+      hash: md5
+      md5: 6c2a31c0241a342f09d441dec24d8d62
+      size: 1066
+    - path: src/prepare.py
+      hash: md5
+      md5: 645012c0e9f85cc7ad606e345ef3a29f
+      size: 693
+    params:
+      params.yaml:
+        seed: 42
+        split:
+          test_size: 0.2
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 3ef741af927b5eedc867fcbf147e6895
+      size: 13693
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 27b2f5a843930c0f5e14250b6cbeaec7
+      size: 54487
+  train:
+    cmd: python -m src.train
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 27b2f5a843930c0f5e14250b6cbeaec7
+      size: 54487
+    - path: src/common.py
+      hash: md5
+      md5: 6c2a31c0241a342f09d441dec24d8d62
+      size: 1066
+    - path: src/train.py
+      hash: md5
+      md5: c73b79ae6f5ee394d2c993c8cceb2ad6
+      size: 1495
+    params:
+      params.yaml:
+        seed: 42
+        train:
+          model: random_forest
+          n_estimators: 100
+          max_depth: 6
+          min_samples_leaf: 1
+          criterion: entropy
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 82b5d5cafaabfeaad5e736b52525873b
+      size: 1127010
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 3ef741af927b5eedc867fcbf147e6895
+      size: 13693
+    - path: models/model.joblib
+      hash: md5
+      md5: 82b5d5cafaabfeaad5e736b52525873b
+      size: 1127010
+    - path: src/common.py
+      hash: md5
+      md5: 6c2a31c0241a342f09d441dec24d8d62
+      size: 1066
+    - path: src/evaluate.py
+      hash: md5
+      md5: 66468f0cdff6de0b5f9b68c4a52b8a58
+      size: 985
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 67ea3f46364ca6053cc6b3dc85f51e51
+      size: 109
