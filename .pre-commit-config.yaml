@@ -25,6 +25,7 @@ repos:
     rev: v1.5.0
     hooks:
       - id: detect-secrets
+        exclude: ^(dvc\.lock|metrics\.json)$
         # DVC pointers and lockfiles are machine-generated content hashes,
         # not credentials - they trip the high-entropy detector on every commit.
         args:
