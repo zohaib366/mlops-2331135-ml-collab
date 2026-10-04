@@ -19,6 +19,7 @@ dependencies = [
     "dvc>=3.67.1",
     "ipython",
     "jupyterlab",
+    "jupytext",
     "loguru",
     "matplotlib",
     "notebook",
@@ -29,16 +30,22 @@ dependencies = [
     "python-dotenv",
     "ruff",
     "scikit-learn",
+    "seaborn",
     "tqdm",
     "typer",
 ]
 requires-python = "~=3.13.0"
 
 
+[tool.uv]
+# Hardlinking fails on cloud-synced folders (OneDrive/Dropbox) and some
+# cross-filesystem setups; copying always works.
+link-mode = "copy"
+
 [tool.ruff]
 line-length = 99
 src = ["src"]
-include = ["pyproject.toml", "src/**/*.py"]
+include = ["pyproject.toml", "src/**/*.py", "tests/**/*.py"]
 
 [tool.ruff.lint]
 extend-select = ["I"]  # Add import sorting
